@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<title>CRAVE | AUTOMOTIVE SPECIALIST</title>
+<style>
+:root{--bg:#0b0b0c;--panel:#151517;--silver:#c7c7c9;--muted:#929297;--line:#38383c}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#29292d 0%,#111113 42%,#080809 100%);color:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Malgun Gothic",sans-serif;display:flex;align-items:center;justify-content:center;padding:28px 16px}
+.wrap{width:min(100%,430px)}
+.card{border:1px solid #55555a;border-radius:22px;background:linear-gradient(145deg,#202023,#101012 62%,#18181b);box-shadow:0 24px 70px #0009;overflow:hidden}
+.front{min-height:270px;padding:42px 32px 34px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.front:after{content:"";position:absolute;width:210px;height:210px;border:1px solid #ffffff12;border-radius:50%;right:-95px;top:-90px;box-shadow:0 0 0 22px #ffffff08,0 0 0 44px #ffffff05}
+.brand{font-size:43px;letter-spacing:.23em;font-weight:600;color:#f4f4f4}
+.rule{height:1px;width:58px;background:linear-gradient(90deg,#eee,#777);margin:20px 0 15px}
+.tag{font-size:10px;letter-spacing:.28em;color:#bdbdc2}
+.front-foot{font-size:10px;letter-spacing:.2em;color:#77777d}
+.back{border-top:1px solid var(--line);padding:27px 30px 30px;background:#111113}
+.name{font-size:22px;font-weight:600;letter-spacing:.04em}
+.role{font-size:11px;color:var(--silver);letter-spacing:.12em;margin-top:6px}
+.contact{margin-top:22px;display:grid;gap:12px}
+.item{display:flex;gap:13px;align-items:flex-start;font-size:13px;color:#dedee1;line-height:1.55}
+.label{width:48px;flex:0 0 48px;color:#88888e;font-size:10px;letter-spacing:.08em;padding-top:2px}
+a{color:inherit;text-decoration:none}
+.actions{display:flex;gap:10px;margin-top:22px}
+.btn{flex:1;text-align:center;border:1px solid #66666b;border-radius:9px;padding:12px 8px;font-size:12px;letter-spacing:.04em;background:linear-gradient(180deg,#29292d,#19191c)}
+.btn.primary{background:linear-gradient(180deg,#dedee0,#a9a9ad);color:#111;border-color:#e3e3e5;font-weight:650}
+.services{margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+.heading{font-size:10px;letter-spacing:.2em;color:#8d8d93;margin-bottom:13px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tagpill{border:1px solid #444449;border-radius:20px;padding:7px 11px;font-size:11px;color:#d2d2d5}
+.note{text-align:center;color:#77777d;font-size:10px;line-height:1.6;margin:17px 10px 0}
+@media(max-width:360px){.front{padding:34px 24px}.back{padding:24px}.brand{font-size:37px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="card" aria-label="CRAVE 디지털 명함">
+    <div class="front">
+      <div>
+        <div class="brand">CRAVE</div>
+        <div class="rule"></div>
+        <div class="tag">AUTOMOTIVE SPECIALIST</div>
+      </div>
+      <div class="front-foot">DETAIL · CARE · AUTOMOTIVE</div>
+    </div>
+    <div class="back">
+      <div class="name">홍석범</div>
+      <div class="role">대표 · CRAVE</div>
+      <div class="contact">
+        <div class="item"><span class="label">PHONE</span><a href="tel:01086404185">010-8640-4185</a></div>
+        <div class="item"><span class="label">ADDRESS</span><span>불암로 41-13<br><span style="color:#85858b;font-size:11px">삼육대 후문 인근</span></span></div>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="tel:01086404185">전화하기</a>
+        <a class="btn" href="https://map.naver.com/v5/search/%EB%B6%88%EC%95%94%EB%A1%9C%2041-13" target="_blank" rel="noopener">위치 보기</a>
+      </div>
+      <div class="services">
+        <div class="heading">OUR SERVICES</div>
+        <div class="tags">
+          <span class="tagpill">신차 패키지</span>
+          <span class="tagpill">자동차 썬팅</span>
+          <span class="tagpill">PPF · 랩핑</span>
+          <span class="tagpill">코팅</span>
+          <span class="tagpill">차량용품</span>
+          <span class="tagpill">보험 처리</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p class="note">CRAVE · AUTOMOTIVE SPECIALIST<br>본 파일은 디지털 명함 시안입니다. 온라인 공유용 주소와 QR은 무료 호스팅에 게시한 뒤 연결할 수 있습니다.</p>
+</main>
+</body>
+</html>
