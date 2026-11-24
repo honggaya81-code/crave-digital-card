@@ -1,5 +1,5 @@
-const CACHE="crave-manager-v6";
-const FILES=["./","./index.html","./manifest.webmanifest","./icon.svg","../cards/new-customer.svg?v=4","../cards/existing-partner.svg?v=4"];
+const CACHE="crave-manager-v7";
+const FILES=["./","./index.html","./manifest.webmanifest","./icon.svg","../cards/new-customer.svg?v=5","../cards/existing-partner.svg?v=5"];
 self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)));self.skipWaiting();});
 self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith("crave-manager-")&&key!==CACHE).map(key=>caches.delete(key)))));self.clients.claim();});
 self.addEventListener("fetch",event=>{
