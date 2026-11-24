@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="크레이브 명함을 선택하고 바로 전달하는 관리 페이지">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>CRAVE 명함 관리</title>
+<style>
+:root{color-scheme:dark;--bg:#101010;--panel:#1b1b1b;--line:#333;--muted:#a6a6a6;--text:#f7f7f7;--accent:#d9ff45}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#303030 0,#101010 48%);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom)}
+main{width:min(100%,520px);margin:0 auto;padding:34px 0 28px}.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:44px}.logo{font-size:27px;font-weight:900;letter-spacing:.16em}.tag{font-size:11px;color:var(--accent);border:1px solid #56651c;border-radius:99px;padding:7px 10px;letter-spacing:.08em}
+.eyebrow{color:var(--muted);font-size:12px;letter-spacing:.16em;text-transform:uppercase}.headline{font-size:29px;line-height:1.35;letter-spacing:-.06em;margin:10px 0 9px}.sub{color:var(--muted);font-size:14px;margin:0 0 26px}
+.card{background:linear-gradient(145deg,#222,#171717);border:1px solid var(--line);border-radius:22px;padding:21px;margin:13px 0;box-shadow:0 12px 32px #0005}.card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.type{font-size:18px;font-weight:750;letter-spacing:-.04em}.desc{font-size:13px;color:var(--muted);margin-top:6px}.phone{font-size:14px;font-variant-numeric:tabular-nums;margin-top:16px;letter-spacing:.03em}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:19px}.btn{border:1px solid #454545;border-radius:12px;padding:13px 10px;background:#292929;color:#fff;font-weight:700;font-size:13px;text-align:center;text-decoration:none;cursor:pointer}.btn.primary{background:var(--accent);border-color:var(--accent);color:#151515}.install{width:100%;margin-top:16px;background:transparent;border:1px solid #626262;color:#eee;border-radius:13px;padding:14px;font-weight:650;font-size:14px;cursor:pointer}.hint{color:var(--muted);font-size:12px;line-height:1.6;margin:12px 3px 0}.foot{margin-top:38px;border-top:1px solid #292929;padding-top:18px;color:#777;font-size:10px;letter-spacing:.13em}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+<main>
+  <header class="brand"><div class="logo">CRAVE</div><div class="tag">BUSINESS CARD</div></header>
+  <div class="eyebrow">DIGITAL CARD MANAGER</div>
+  <h1 class="headline">전달할 명함을<br>선택하세요.</h1>
+  <p class="sub">열기 · 링크 복사 · 바로 전달</p>
+
+  <section class="card" aria-labelledby="new-title">
+    <div class="card-head"><div><div class="type" id="new-title">신규 고객용</div><div class="desc">처음 방문하는 고객에게 전달</div></div></div>
+    <div class="phone">010-8460-4185</div>
+    <div class="actions">
+      <a class="btn primary" href="../">명함 열기</a>
+      <button class="btn" type="button" data-copy="../">링크 복사</button>
+      <button class="btn" type="button" data-share="../">바로 전달</button>
+      <a class="btn" href="tel:01084604185">전화 걸기</a>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="existing-title">
+    <div class="card-head"><div><div class="type" id="existing-title">기존 거래처용</div><div class="desc">기존 거래처 및 협력사에 전달</div></div></div>
+    <div class="phone">010-8640-1001</div>
+    <div class="actions">
+      <a class="btn primary" href="../existing/">명함 열기</a>
+      <button class="btn" type="button" data-copy="../existing/">링크 복사</button>
+      <button class="btn" type="button" data-share="../existing/">바로 전달</button>
+      <a class="btn" href="tel:01086401001">전화 걸기</a>
+    </div>
+  </section>
+
+  <button class="install" id="install" type="button">＋ 홈 화면에 앱처럼 추가</button>
+  <p class="hint" id="hint" aria-live="polite">홈 화면에 추가해 두면 다음부터 주소를 찾지 않고 바로 열 수 있습니다.</p>
+  <footer class="foot">CRAVE · DIGITAL BUSINESS CARD</footer>
+</main>
+<script>
+const absolute = path => new URL(path, location.href).href;
+document.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', async () => {
+  const url = absolute(button.dataset.copy);
+  try { await navigator.clipboard.writeText(url); button.textContent='복사 완료'; setTimeout(()=>button.textContent='링크 복사',1600); }
+  catch { window.prompt('아래 링크를 복사하세요.',url); }
+}));
+document.querySelectorAll('[data-share]').forEach(button => button.addEventListener('click', async () => {
+  const url = absolute(button.dataset.share);
+  if (navigator.share) { try { await navigator.share({title:'CRAVE 명함',text:'크레이브 명함입니다.',url}); } catch(e) { if(e.name!=='AbortError') alert('공유를 실행하지 못했습니다. 링크 복사를 이용해 주세요.'); } }
+  else { try { await navigator.clipboard.writeText(url); alert('명함 링크를 복사했습니다.'); } catch { window.prompt('아래 링크를 복사하세요.',url); } }
+}));
+let installPrompt;
+const installButton=document.getElementById('install'), hint=document.getElementById('hint');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;});
+installButton.addEventListener('click',async()=>{
+  if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;}
+  else {hint.textContent='Chrome 메뉴(⋮)에서 “홈 화면에 추가” 또는 “앱 설치”를 선택하세요. 이미 설치했다면 홈 화면의 CRAVE 아이콘으로 실행하면 됩니다.';}
+});
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
